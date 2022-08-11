@@ -1,0 +1,22 @@
+from django.http import HttpResponse
+from .models import ScrumyGoals
+
+
+
+def get_grading_parameters(request):
+    return HttpResponse("Welcome to Django")
+
+
+def index(request
+
+
+
+def goal(request):
+    goal = ScrumyGoals.objects.filter(goal_name='Learn Django')
+    return HttpResponse(goal)
+
+
+def move_goal(request, goal_id):
+    goal = ScrumyGoals.objects.get(goal_id=goal_id)
+    result = goal.goal_name
+    return HttpResponse(result)

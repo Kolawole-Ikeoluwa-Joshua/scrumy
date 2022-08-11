@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<style>
+table, th, td {
+  border:1px solid black;
+}
+</style>
+<body>
+
+<h2>Scrumy Goals</h2>
+
+<h3>Username: {{request.user }} </h3>
+<h3>Groups: {{ user.groups.all.0 }}</h3>
+
+<table border="1">
+    <thead>
+        <tr>
+            <th>User</th>
+            <th>Weekly Goals</th>
+            <th>Daily Goals</th>
+            <th>Verify Goals</th>
+            <th>Done Goals</th>
+        </tr>
+    </thead>
+    {% if users %}
+        {% for u in users %}
+            <tbody>
+                <tr>
+                    <td>{{ u }}</td>
+                    <td>
+                        {% for w in related_weekly_goal %}
+                            {% if w.user == u %}
+                                {{ w.goal_id }} {{ w }} <a href="{% url 'movegoal' w.goal_id %}">Move Goal</a><br />
+                            {% endif %}
+                        {% endfor %}
+                    </td>
+                    <td>
+                        {% for d in related_daily_goal %}
+                            {% if d.user == u %}
+                                {{ d.goal_id }} {{ d }} <a href="{% url 'movegoal' d.goal_id %}">Move Goal</a><br />
+                            {% endif %}
+                        {% endfor %}
+                    </td>
+                    <td>
+                        {% for v in related_verify_goal %}
+                            {% if v.user == u %}
+                                {{ v.goal_id }} {{ v }} <a href="{% url 'movegoal' v.goal_id %}">Move Goal</a><br />
+                            {% endif %}
+                        {% endfor %}
+                    </td>
+                    <td>
+                        {% for d in related_done_goal %}
+                            {% if d.user == u %}
+                                {{ d.goal_id }} {{ d }} <a href="{% url 'movegoal' d.goal_id %}">Move Goal</a><br />
+                            {% endif %}
+                        {% endfor %}
+                    </td>
+            
+                </tr>
+            </tbody>
+        {% endfor %}
+    {% endif %}
+</table>
+
+<a href="{% url 'addgoal' %}">Create a Goal</a>
+</body>
+</html>

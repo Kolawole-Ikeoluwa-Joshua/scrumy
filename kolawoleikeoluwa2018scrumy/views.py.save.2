@@ -1,0 +1,34 @@
+from django.http import HttpResponse
+from .models import ScrumyGoals, GoalStatus
+from django.contrib.auth.models import User
+import random
+
+
+def get_grading_parameters(request):
+    return HttpResponse("Welcome to Django")
+
+
+def index(request):
+    #return HttpResponse("This is a Scrum Application")
+    goal = ScrumyGoals.objects.filter(goal_name='Learn Django')
+    return HttpResponse(goal)
+
+
+def move_goal(request, goal_id):
+    goal = ScrumyGoals.objects.get(goal_id=goal_id)
+    result = goal.goal_name
+    return HttpResponse(result)
+
+
+def add_goal(request):
+    new_goal = ScrumyGoals.objects.create(
+    goal_name='Keep Learning Django',
+    goal_id=random.sample(range(1000, 9999)),
+    created_by='Louis',
+    moved_by='Louis',
+    owner='Louis',
+    goal_status=GoalStatus.objects.get(status_name='Weekly Goal'),
+    user=User.objects.get(username='Louis Oma')
+)
+
+

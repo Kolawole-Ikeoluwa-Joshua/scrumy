@@ -1,0 +1,39 @@
+<html>
+  
+<head>
+
+    <style>
+        .i-am-centered {
+            margin: auto;
+            max-width: 300px;
+            padding-top: 5%;
+        }
+    </style>
+</head>
+  
+<body>
+    <h1>Move Scrumy Goals Page</h1>
+
+    {% if form.errors %}{{ error_message }}</p>{% endif %}
+
+
+    <h3>Username: {{ user }} </h3>
+    <h3>Groups: {{ user.groups.all.0 }}</h3>
+
+
+    <div class="i-am-centered">
+        <form method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+                <label>Goal Name: </label>
+                {{ goal_name.goal_name }}
+            </div><br>
+            <div>
+                {{ form.as_p }}
+                <input type="submit" value="Save">
+            </div>
+            
+        </form>
+    </div>
+</body>
+</html>
