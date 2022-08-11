@@ -27,7 +27,7 @@ def _parse_body(body):
     
 
 def _send_to_connection(connection_id, data):
-    gatewayapi=boto3.client('apigatewaymanagementapi', endpoint_url='https://mpwzylrgdk.execute-api.us-east-2.amazonaws.com/test/', region_name='us-east-2', aws_access_key_id='AKIAW5VCZOENTS7E4L6C', aws_secret_access_key='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')
+    gatewayapi=boto3.client('apigatewaymanagementapi', endpoint_url='https://mpwzylrgdk.execute-api.us-east-2.amazonaws.com/test/', region_name='us-east-2', aws_access_key_id='aws_access_key', aws_secret_access_key='aws_secret_access_key')
     return gatewayapi.post_to_connection(ConnectionId=connection_id, Data=json.dumps(data).encode('utf-8'))
 
 
